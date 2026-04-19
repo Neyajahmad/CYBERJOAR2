@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MapView from './components/MapView';
 import Sidebar from './components/Sidebar';
 import { getAllAreas, getTopAreas, addArea } from './services/api';
@@ -14,7 +14,7 @@ function App() {
   });
 
   // Fetch all areas
-  const fetchAreas = async () => {
+  const fetchAreas = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -33,28 +33,26 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   // Fetch top areas
-  const fetchTopAreas = async () => {
+  const fetchTopAreas = useCallback(async () => {
     try {
       const response = await getTopAreas();
       setTopAreas(response.data);
     } catch (err) {
       console.error('Failed to fetch top areas:', err);
     }
-  };
+  }, []);
 
   // Initial load
   useEffect(() => {
     fetchAreas();
     fetchTopAreas();
-  }, []);
+  }, [fetchAreas, fetchTopAreas]);
 
-  // Refetch when filters change
-  useEffect(() => {
-    fetchAreas();
-  }, [filters]);
+  // Refetch when filters change (already handled by fetchAreas dependency)
+  // No need for separate useEffect
 
   // Handle new area submission
   const handleAddArea = async (areaData) => {
