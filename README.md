@@ -83,13 +83,21 @@ cd ../client
 npm install
 ```
 
-### 2. Configure MongoDB
+### 2. Configure Environment Variables
 
-Create `server/.env`:
+Create `server/.env` file (copy from .env.example):
+```bash
+cd server
+cp .env.example .env
+```
+
+Edit `server/.env` with your MongoDB connection:
 ```
 MONGODB_URI=mongodb://localhost:27017/urban-growth
 PORT=5000
 ```
+
+**Note:** Never commit `.env` file to GitHub. Use `.env.example` as a template.
 
 ### 3. Start MongoDB
 ```bash

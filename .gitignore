@@ -3,12 +3,14 @@ node_modules/
 client/node_modules/
 server/node_modules/
 
-# Environment variables
+# Environment variables (IMPORTANT: Never commit these!)
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+server/.env
+client/.env
 
 # Build outputs
 client/build/
@@ -37,3 +39,20 @@ coverage/
 
 # Misc
 .cache/
+
+# MongoDB data
+mongodb-data/
+
+# Documentation (keep only README.md)
+*_GUIDE.md
+*_SETUP.md
+*_FIX.md
+*_STEPS.md
+SAMPLE_*.md
+DEBUG_*.md
+CLEAR_*.md
+QUICK_*.md
+WINDOWS_*.md
+INDIA_*.md
+START_*.md
+TESTING_*.md
