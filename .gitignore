@@ -10,7 +10,11 @@ server/node_modules/
 .env.test.local
 .env.production.local
 server/.env
-client/.env
+client/.env.local
+client/.env.development.local
+
+# Keep production env template
+!client/.env.production
 
 # Build outputs
 client/build/
