@@ -23,13 +23,16 @@ function App() {
       if (filters.search) filterParams.search = filters.search;
       if (filters.showHighGrowthOnly) filterParams.minScore = 70;
       
+      console.log('API URL:', process.env.REACT_APP_API_URL);
       console.log('Fetching areas with filters:', filterParams);
+      
       const response = await getAllAreas(filterParams);
       console.log('Received areas:', response.data.length, 'areas');
       setAreas(response.data);
     } catch (err) {
-      setError('Failed to fetch areas');
       console.error('Error fetching areas:', err);
+      console.error('Error details:', err.response?.data || err.message);
+      setError(`Failed to fetch areas: ${err.message}`);
     } finally {
       setLoading(false);
     }
